@@ -123,15 +123,22 @@ Where 'consul.hclic' is the name of the local file that has the enterprise licen
 
 # Deploy Hashicups and register it with Consul on Kubernetes
 
-  Any demo application with atleast one upstream/downstream pair will do but we use the hashicups application (from our learn tutorials) here to showcase the different options that are possible with propertyoverride and other envoy extensions
+  Any demo application with atleast one upstream/downstream pair will do but we use the hashicups application here to showcase the different options that are possible with propertyoverride and other envoy extensions
 
   You are free to use any application but you need to make sure you update the propertyoverride.json file accordingly. 
 
-  1 - If you cloned this repo as is, the following command should install the application into the default K8s namespace. You can also deploy into a specific namespace if you so choose
+  1 - Clone this repo 
+
+  ```
+  git clone https://github.com/hashicorp-education/learn-consul-service-mesh-deploy.git
+  ```
+
+  And from that folder, apply just the hashicups configurations as follows - 
 
   ```
   k apply -f learn-consul-service-mesh-deploy/hashicups
   ```
+  The above command should install the application into the default K8s namespace. You can also deploy into a specific namespace if you so choose. 
 
   2 - Confirm the services are live by running kubectl get services like - 
 
