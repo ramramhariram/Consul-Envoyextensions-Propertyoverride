@@ -1,0 +1,71 @@
+global:
+  name: consul
+  #image: "hashicorppreview/consul-enterprise:1.16-dev"
+  #image: "hashicorp/consul-enterprise:1.16.0-rc1-ent" 
+  image: "hashicorppreview/consul-enterprise:1.16-dev"
+  #imageK8S: "hashicorppreview/consul-k8s-control-plane:1.2.0-dev"
+  imageK8S: "hashicorp/consul-k8s-control-plane:1.2.0-rc1" 
+  datacenter: default
+  adminPartitions:
+    enabled: true
+    name: "default"
+  acls:
+    manageSystemACLs: true
+  enableConsulNamespaces: true
+  enterpriseLicense:
+    secretName: consul-enterprise-license
+    secretKey: license
+    enableLicenseAutoload: true
+  peering:
+    enabled: true
+  tls:
+    enabled: true
+    serverAdditionalDNSSANs: ['*.us-east-1.elb.amazonaws.com']
+    enableAutoEncrypt: true
+
+  #gossipEncryption:
+    #secretName: consul-gossip-encryption-key 
+    #secretKey: key
+
+server:
+ replicas: 3
+ bootstrapExpect: 3
+ exposeService:
+    enabled: true
+    type: LoadBalancer
+ extraConfig: |
+    {
+      "log_level": "TRACE"
+    }
+ #exposeGossipAndRPCPorts: true
+
+#syncCatalog: 
+# enabled: true
+# k8sAllowNamespaces: ["*"]
+# consulNamespaces:
+#   mirroringK8S: true
+
+connectInject:
+  enabled: true
+  transparentProxy:
+    defaultEnabled: true
+  consulNamespaces:
+    mirroringK8S: true
+  k8sAllowNamespaces: ['*']
+  k8sDenyNamespaces: []
+    
+meshGateway:
+  enabled: true
+  replicas: 3
+  service:
+    enabled: true
+    type: LoadBalancer
+
+controller:
+  enabled: true
+
+ui:
+  enabled: true
+  service:
+    enabled: true
+    type: LoadBalancer

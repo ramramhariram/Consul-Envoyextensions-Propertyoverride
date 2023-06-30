@@ -1,0 +1,44 @@
+{
+  "apiVersion": "consul.hashicorp.com/v1alpha1",
+  "kind": "ServiceDefaults",
+  "metadata": {
+    "name": "public-api"
+  },
+  "spec": {
+    "protocol": "http",
+    "envoyExtensions": [
+      {
+        "name": "builtin/property-override",
+        "arguments": {
+          "proxyType": "connect-proxy",
+          "patches": [
+            {
+              "resourceFilter": {
+                "resourceType": "listener",
+                "trafficDirection": "inbound"
+              },
+              "op": "add",
+              "path": "/stat_prefix",
+              "value": "custom.stats.inbound"
+            },
+            {
+              "resourceFilter": {
+                "resourceType": "cluster",
+                "trafficDirection": "outbound",
+                "services": [
+                  {
+                    "name": "products-api"
+                  }
+                ]
+              },
+              "op": "add",
+              "path": "/upstream_connection_options/tcp_keepalive/keepalive_probes",
+              "value": 1234
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+
