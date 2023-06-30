@@ -4,16 +4,22 @@
 
 1 - Atleast one kubernetes Cluster. 
   
-  Important Note if using EKS - there is currently an issue EKS clusters in latest version (1.127) - OIDC provider does not get installed. Use this documentation to ensure you install it prior to deploying Consul - https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
+  Important Note if using EKS - there may be an issue with EKS clusters in latest version (1.27) - where the OIDC provider does not get installed. Use this documentation to ensure or deploy if necessary, prior to deploying Consul - https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
 
 2 - Consul installation on 1.16 
-  My helm values deploy 1.16-dev as I have been deploying pre and post Release candidate for 1.16. Use GA components for everything if it is GA at the time of your testing. It may also have additional parameters you dont necessarily need  - in other words a simpler helm values for installing consul would work as long as you are referencing the correct 'image' and 'imageK8S'
+  Helm values here deploy 1.16-dev as I have been deploying pre and post Release candidate for 1.16. Use GA components for everything if it is GA at the time of your testing. 
+  
+  It may also have additional parameters you dont necessarily need  - in other words a simpler helm values for installing consul would work as long as you are referencing the correct 'image' and 'imageK8S'
 
   You can install Consul using consul-k8s or helm. There are plenty of helm examples out there, this repo highlights an example of using consul-k8s. 
 
-  Note - If using helm to install, it is better to also use helm to uninstall. Consul-k8s is definitely better for uninstall (cleaner in wiping all consul components) so starting with consul-k8s to install is a good idea if you are going to use it to uninstall. At the time of publishing this repo, combining helm/consul-k8s is not officially supported. Mix them at your own risk. 
+  Note - If using helm to install, it is better to also use helm to uninstall. 
+  
+  Consul-k8s is definitely better for uninstall (cleaner in wiping all consul components) so starting with consul-k8s to install is a good idea if you are going to use it to uninstall. 
+  
+  At the time of publishing this repo, combining helm/consul-k8s is not officially supported. Mix them at your own risk. 
 
-  You don't need a Consul Enterprise license for this specific demo but you probably want to get one to test out this and all the other ENT only features in 1.16. See other examples at the end of this readme. 
+3 - You don't need a Consul Enterprise license for this specific demo but you probably want to get one to test out this and all the other ENT only features in 1.16. See other examples at the end of this readme. 
 
   To request a 30 day trial license: https://www.hashicorp.com/products/consul/trial
 
@@ -21,13 +27,13 @@
 
 1. Clone this repo
 ```
-git clone https://github.com/xxxxxxxxxxx.git  **UPDATE THIS**
+git clone https://github.com/ramramhariram/Consul-Envoyextensions-Propertyoverride.git
 ```
 
-2. Nagivate to the **UPDATE THIS** folder. 
+2. Nagivate to the correct folder. 
 
 ```
-cd **UPDATE THIS**
+cd Consul-Envoyextensions-Propertyoverride
 ```
 
 3. If you have multiple clusters, ensure you are in the current kubernetes cluster context 
@@ -43,6 +49,7 @@ kubectl create secret generic consul-enterprise-license --from-literal="license=
 Where 'consul.hclic' is the name of the local file that has the enterprise license. 
 
 5 - Ensure you have the correct consul-k8s cli version. Or the correct helm repo if using helm. 
+  
   https://developer.hashicorp.com/consul/docs/k8s/installation/install-cli#install-a-previous-version (while it says previous version, you can use these instructions to install newer/RC versions too)
 
   To install consul - 
