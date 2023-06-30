@@ -3,8 +3,8 @@
 # Pre-reqs
 
 1 - Atleast one kubernetes Cluster. 
-  The repo here deploys an EKS cluster but you may use any Kubernetes cluster. 
-  Important Note - there is currently an issue EKS clusters in latest version (1.127) - OIDC provider does not get installed. Use this documentation to ensure you install it prior to deploying Consul - https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
+  
+  Important Note if using EKS - there is currently an issue EKS clusters in latest version (1.127) - OIDC provider does not get installed. Use this documentation to ensure you install it prior to deploying Consul - https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
 
 2 - Consul installation on 1.16 
   My helm values deploy 1.16-dev as I have been deploying pre and post Release candidate for 1.16. Use GA components for everything if it is GA at the time of your testing. It may also have additional parameters you dont necessarily need  - in other words a simpler helm values for installing consul would work as long as you are referencing the correct 'image' and 'imageK8S'
