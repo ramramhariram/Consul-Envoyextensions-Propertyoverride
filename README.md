@@ -42,12 +42,12 @@ cd Consul-Envoyextensions-Propertyoverride
 4. Add Consul Ent license as a K8s secret - 
 
 ```
-secret=$(cat consul.hclic)
-kubectl create secret generic consul-enterprise-license --from-literal="license=${secret}"
+export CONSUL_LICENSE=<ADD_YOUR_LICENSE_HERE>
 ```
 
-Where 'consul.hclic' is the name of the local file that has the enterprise license. 
-
+```
+kubectl create secret generic license --from-literal=key=$CONSUL_LICENSE
+```
 5 - Ensure you have the correct consul-k8s cli version. Or the correct helm repo if using helm. 
   
   https://developer.hashicorp.com/consul/docs/k8s/installation/install-cli#install-a-previous-version (while it says previous version, you can use these instructions to install newer/RC versions too)
@@ -202,6 +202,8 @@ Where 'consul.hclic' is the name of the local file that has the enterprise licen
   Choose the entire config dump (or you can choose to look at specific listeners/clusters depending on your configuration)
 
   At this point you should just see regular envoy config dump without your changes. 
+
+  NOTE: Curl from the pod is another option to review envoy config dumps but curl is not available on these pods and the browser is easier to view but bottom line you want to look at the envoy config dumps to review changes. 
 
   3 - Use the following command to apply your property override changes (using the propertyoverride json file is included in this repo or by creating your own accordingly for your application) - 
 
