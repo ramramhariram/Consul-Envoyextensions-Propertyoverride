@@ -39,14 +39,15 @@ cd Consul-Envoyextensions-Propertyoverride
 3. If you have multiple clusters, ensure you are in the current kubernetes cluster context 
 
 
-4. Add Consul Ent license as a K8s secret - 
+4. Add Consul Ent license as a K8s secret, after creating the consul namesapce as well - 
 
 ```
 export CONSUL_LICENSE=<ADD_YOUR_LICENSE_HERE>
 ```
 
 ```
-kubectl create secret generic license --from-literal=key=$CONSUL_LICENSE
+kubectl create namespace consul 
+kubectl create secret generic license --from-literal=key=$CONSUL_LICENSE -n consul
 ```
 5 - Ensure you have the correct consul-k8s cli version. Or the correct helm repo if using helm. 
   
