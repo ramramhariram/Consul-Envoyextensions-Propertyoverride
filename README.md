@@ -47,7 +47,8 @@ export CONSUL_LICENSE=<ADD_YOUR_LICENSE_HERE>
 
 ```
 kubectl create namespace consul 
-kubectl create secret generic license --from-literal=key=$CONSUL_LICENSE -n consul
+kubectl create secret generic consul-enterprise-license --from-literal=key=$CONSUL_LICENSE -n consul
+
 ```
 5 - Ensure you have the correct consul-k8s cli version. Or the correct helm repo if using helm. 
   
