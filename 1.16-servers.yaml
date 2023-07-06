@@ -2,9 +2,10 @@ global:
   name: consul
   #image: "hashicorppreview/consul-enterprise:1.16-dev"
   #image: "hashicorp/consul-enterprise:1.16.0-rc1-ent" 
-  image: "hashicorppreview/consul-enterprise:1.16-dev"
+  #image: "hashicorppreview/consul-enterprise:1.16-dev"
+  image: "hashicorp/consul-enterprise:1.16.0-ent"
   #imageK8S: "hashicorppreview/consul-k8s-control-plane:1.2.0-dev"
-  imageK8S: "hashicorp/consul-k8s-control-plane:1.2.0-rc1" 
+  imageK8S: "hashicorp/consul-k8s-control-plane:1.2.0" 
   datacenter: default
   adminPartitions:
     enabled: true
