@@ -57,7 +57,7 @@ kubectl create secret generic consul-enterprise-license --from-literal=key=$CONS
   To install consul - 
 
   ```
-  consul-k8s install --config-file 1.16-servers.yaml -set chart.version=1.2.0-rc1
+  consul-k8s install --config-file 1.16-servers.yaml -set chart.version=1.2.0
   ```
   Note - Whether you use consul-k8s or helm, it is always a good practise to set the chart version, especially when working with RC or dev releases.  
   Note - documentation on how to install a specific consul-k8s version of cli (brew may not work in some cases) - 
