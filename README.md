@@ -138,7 +138,7 @@ kubectl create secret generic consul-enterprise-license --from-literal=key=$CONS
   And from that folder, apply just the hashicups configurations as follows - 
 
   ```
-  k apply -f learn-consul-service-mesh-deploy/hashicups
+  kubectl apply -f learn-consul-service-mesh-deploy/hashicups
   ```
   The above command should install the application into the default K8s namespace. You can also deploy into a specific namespace if you so choose. 
 
